@@ -1,5 +1,5 @@
 {
-  "name": "next.route",
+  "name": "next-api-method",
   "version": "0.0.0",
   "dependencies": {
     "npm-ez": "^2.0.3"
