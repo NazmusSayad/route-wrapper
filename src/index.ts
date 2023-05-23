@@ -1,29 +1,15 @@
-type RouterItem = Function | Function[]
-interface Routes {
-  get: RouterItem
-  put: RouterItem
-  post: RouterItem
-  head: RouterItem
-  patch: RouterItem
-  trace: RouterItem
-  delete: RouterItem
-  connect: RouterItem
-  options: RouterItem
-}
-
-interface Options {
-  errorHandler(err: any, req: any, res: any): void
-  middlewares: Function[]
-}
-
 const defaultOptions: Options = { errorHandler() {}, middlewares: [] }
-
-export default function Route(options = {} as Partial<Options>) {
+export function createRouter(options = {} as Partial<Options>) {
   const conf = { ...defaultOptions, ...options }
 
-  return function (routes: Partial<Routes>) {
+  return function (routes: Partial<RouteOptions>) {
     return (req: any, res: any) => {
-      const rawHandler = (routes as any)[req.method!.toLowerCase()]
+      const methodHandlers = (routes as any)[req.method!.toLowerCase()]
+      const isHandlerAvailable = Array.isArray(methodHandlers)
+        ? Boolean(methodHandlers.length)
+        : typeof methodHandlers === 'function'
+
+      const rawHandler = isHandlerAvailable ? methodHandlers : routes.all
       if (!rawHandler) return
 
       const handlers = Array.isArray(rawHandler) ? rawHandler : [rawHandler]
@@ -46,4 +32,32 @@ export default function Route(options = {} as Partial<Options>) {
       firstFn && firstFn()
     }
   }
+}
+
+export default createRouter({
+  errorHandler(err, req, res) {
+    res.status(400).json({
+      status: 'fail',
+      message: err.message,
+    })
+  },
+})
+
+type RouterItem = Function | Function[]
+interface RouteOptions {
+  all: RouterItem
+  get: RouterItem
+  put: RouterItem
+  post: RouterItem
+  head: RouterItem
+  patch: RouterItem
+  trace: RouterItem
+  delete: RouterItem
+  connect: RouterItem
+  options: RouterItem
+}
+
+interface Options {
+  errorHandler(err: any, req: any, res: any): void
+  middlewares: Function[]
 }

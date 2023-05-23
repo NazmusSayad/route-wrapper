@@ -1,10 +1,9 @@
 {
-  "name": "next-api-method",
+  "name": "faas-router",
   "version": "0.0.0",
-  "dependencies": {
-    "npm-ez": "^2.0.3"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "npm-ez": "^2.0.3",
     "typescript": "^5.0.4"
   },
   "scripts": {
