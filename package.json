@@ -1,6 +1,6 @@
 {
   "name": "faas-router",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "dependencies": {},
   "devDependencies": {
     "npm-ez": "^2.0.3",
