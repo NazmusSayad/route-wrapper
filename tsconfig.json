@@ -6,7 +6,8 @@
     "inlineSourceMap": false,
     "strict": true,
     "pretty": true,
-    "removeComments": true
+    "removeComments": true,
+    "moduleResolution": "nodenext"
   },
   "include": ["src"]
 }

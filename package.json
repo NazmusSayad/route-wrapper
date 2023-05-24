@@ -1,7 +1,9 @@
 {
   "name": "faas-router",
-  "version": "1.0.0",
-  "dependencies": {},
+  "version": "1.0.1",
+  "dependencies": {
+    "req-error-core": "latest"
+  },
   "devDependencies": {
     "npm-ez": "^2.0.3",
     "typescript": "^5.0.4"
