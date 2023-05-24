@@ -130,10 +130,10 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-req-error-core@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/req-error-core/-/req-error-core-0.0.4.tgz#ae7b0f04aeee532b1c3be76af44385bf66ad6f18"
-  integrity sha512-1LJqaWuWMMc5Hmy4nxlNeB449dpXK0rr6boVf3w9XcQSVTFQKMTBZcG6WW+D+C1iFqOJW1qkqKTRBlNmMo73zA==
+req-error-core@latest:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/req-error-core/-/req-error-core-0.0.5.tgz#9be484ebbf37eabc8985c1e692ef7b2be0a511d8"
+  integrity sha512-yaODxlXWPO/QChHXWtAq20NEzk52dfNS55IrBhXYwnbzXuDnDe8OQ7geOYerQFBCJYJElvTfJ6RmgQN5gZ9Gyw==
 
 resolve@^1.1.6:
   version "1.22.2"

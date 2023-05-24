@@ -1,6 +1,6 @@
 {
   "name": "faas-router",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
     "req-error-core": "latest"
   },
