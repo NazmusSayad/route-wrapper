@@ -1,7 +1,7 @@
-import { ErrorManager } from 'req-error-core'
+import { ErrorManager } from 'req-error'
 import createRouter from './createRouter'
 
-export * from 'req-error-core'
+export * from 'req-error'
 export * from './createRouter'
 
 export default (() => {

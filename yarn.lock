@@ -3,9 +3,9 @@
 
 
 "@babel/parser@^7.20.7":
-  version "7.21.8"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.21.8.tgz#642af7d0333eab9c0ad70b14ac5e76dbde7bfdf8"
-  integrity sha512-6zavDGdzG3gUqAdWvlLFfk+36RilI+Pwyuuh7HItyeScCWP3k6i8vKclAQ0bM/0y/Kz/xiwvxhMv9MgTJP5gmA==
+  version "7.22.4"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.22.4.tgz#a770e98fd785c231af9d93f6459d36770993fb32"
+  integrity sha512-VLLsx06XkEYqBtE5YGPwfSGwfrjnyPP5oiGty3S8pQLFDFLaS8VwWSIxkTXpcvr5zeYLE6+MBNl2npl/YnfofA==
 
 ansi-colors@^4.1.3:
   version "4.1.3"
@@ -78,9 +78,9 @@ interpret@^1.0.0:
   integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
 
 is-core-module@^2.11.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.12.0.tgz#36ad62f6f73c8253fd6472517a12483cf03e7ec4"
-  integrity sha512-RECHCBCd/viahWmwj6enj19sKbHfJrddi/6cBDsNTKbNq0f7VeaUkBo60BqzvPqo/W54ChS62Z5qyun7cfOMqQ==
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.12.1.tgz#0c0b6885b6f80011c71541ce15c8d66cf5a4f9fd"
+  integrity sha512-Q4ZuBAe2FUsKtyQJoQHlvP8OvBERxO3jEmy1I7hcRXcJBGGHFh/aJBswbXuS9sgrDH2QUO8ilkwNPHvHMd8clg==
   dependencies:
     has "^1.0.3"
 
@@ -130,10 +130,10 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-req-error-core@latest:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/req-error-core/-/req-error-core-0.0.5.tgz#9be484ebbf37eabc8985c1e692ef7b2be0a511d8"
-  integrity sha512-yaODxlXWPO/QChHXWtAq20NEzk52dfNS55IrBhXYwnbzXuDnDe8OQ7geOYerQFBCJYJElvTfJ6RmgQN5gZ9Gyw==
+req-error@latest:
+  version "1.0.26"
+  resolved "https://registry.yarnpkg.com/req-error/-/req-error-1.0.26.tgz#9609dd1bec6384b52771984bf31645b7bbc155f9"
+  integrity sha512-CPYvg+TpPEMegNhyidx7vGw0/NVCEDTL8Fjftg2VIhtRrI7f+6E0yhb88y41DjuolM4sp6cPQJgixoXsaxYZcg==
 
 resolve@^1.1.6:
   version "1.22.2"
