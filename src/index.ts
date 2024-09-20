@@ -1,16 +1,6 @@
-import { ErrorManager } from 'req-error'
-import createRouter from './createRouter'
+import RouteHandlerCore from './RouteHandlerCore'
 
-export * from 'req-error'
-export * from './createRouter'
-
-export default (() => {
-  const errorManager = new ErrorManager()
-  return createRouter({
-    errorHandler(err, req, res) {
-      const [message, statusCode] = errorManager.getErrorInfo(err)
-      const status = statusCode < 500 ? 'fail' : 'error'
-      res.status(statusCode).json({ status, message })
-    },
-  })
-})()
+export * from './types.t'
+export default function SafeRoute<TParams extends any[]>() {
+  return RouteHandlerCore<TParams>({})
+}

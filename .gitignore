@@ -7,3 +7,8 @@ dist-mjs
 node_modules
 dist-cjs
 dist-mjs
+
+
+# npmize
+dist
+.npmize

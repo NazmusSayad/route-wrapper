@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "skipLibCheck": true,
-    "declaration": true,
-    "inlineSourceMap": false,
+    "target": "ES6",
+    "moduleResolution": "Node",
+
     "strict": true,
-    "pretty": true,
+    "declaration": true,
+    "skipLibCheck": true,
     "removeComments": true,
-    "moduleResolution": "nodenext"
+
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["src"]
 }

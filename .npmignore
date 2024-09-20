@@ -1,15 +1,7 @@
-# Added by npm-ez
+# npmize
 *
 !lib/**
-!dist-cjs/**
-!dist-mjs/**
-!package.json
+!dist/**
 !README.md
-
-# Added by npm-ez
-*
-!lib/**
-!dist-cjs/**
-!dist-mjs/**
 !package.json
-!README.md
+dist/__lab__
