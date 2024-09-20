@@ -1,6 +1,6 @@
-import RouteHandlerCore from './RouteHandlerCore'
+import RouteCore from './RouteCore'
 
 export * from './types.t'
 export default function SafeRoute<TParams extends any[]>() {
-  return RouteHandlerCore<TParams>({})
+  return RouteCore<TParams>({})
 }

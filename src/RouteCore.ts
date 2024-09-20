@@ -1,6 +1,6 @@
 import { Handlers, ErrorHandler, RouteOptions } from './types.t'
 
-export default function RouteHandlerCore<TParams extends any[]>(
+export default function Core<TParams extends any[]>(
   options: RouteOptions<TParams>
 ) {
   const config = {
@@ -24,7 +24,7 @@ export default function RouteHandlerCore<TParams extends any[]>(
     return firstFn && firstFn()
   }
 
-  function RouteHandlerInner(...handlers: Handlers<TParams>[]) {
+  function ExecuteRoute(...handlers: Handlers<TParams>[]) {
     const allHandlers = [...config.middlewares, ...handlers]
 
     return async function (...args: TParams) {
@@ -52,23 +52,23 @@ export default function RouteHandlerCore<TParams extends any[]>(
     }
   }
 
-  RouteHandlerInner.clone = function () {
-    return RouteHandlerCore({ ...config })
+  ExecuteRoute.clone = function () {
+    return Core({ ...config })
   }
 
-  RouteHandlerInner.catch = function (...handlers: ErrorHandler<TParams>[]) {
-    return RouteHandlerCore({
+  ExecuteRoute.catch = function (...handlers: ErrorHandler<TParams>[]) {
+    return Core({
       ...config,
       errorHandlers: [...config.errorHandlers, ...handlers],
     })
   }
 
-  RouteHandlerInner.use = function (...handlers: Handlers<TParams>[]) {
-    return RouteHandlerCore({
+  ExecuteRoute.use = function (...handlers: Handlers<TParams>[]) {
+    return Core({
       ...config,
       middlewares: [...config.middlewares, ...handlers],
     })
   }
 
-  return RouteHandlerInner
+  return ExecuteRoute
 }
