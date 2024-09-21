@@ -5,7 +5,6 @@ export type RouteOptions<TParams extends any[], TReturn = unknown> = {
 }
 
 export type RouteHandler<TParams extends any[], TReturn = unknown> = (
-  next: (err?: unknown) => void,
   ...args: TParams
 ) => TReturn | Promise<TReturn> | void | Promise<void>
 
