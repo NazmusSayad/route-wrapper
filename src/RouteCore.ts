@@ -6,7 +6,7 @@ import {
 } from './types.t'
 
 export default function Core<TParams extends any[], TReturn>(
-  options: RouteOptions<TParams>
+  options: RouteOptions<TParams, TReturn>
 ) {
   function ExecuteRoute(...handlers: RouteHandler<TParams, TReturn>[]) {
     const totalHandlers = [...(options.middlewares ?? []), ...handlers]
@@ -45,7 +45,7 @@ export default function Core<TParams extends any[], TReturn>(
     TInnerReturn = TReturn
   >(
     errHandler?: ErrorHandler<TInnerParams>,
-    finisher?: FinisherHandler<TInnerParams>
+    finisher?: FinisherHandler<TInnerParams, TInnerReturn>
   ) {
     return Core<TInnerParams, TInnerReturn>({
       ...options,

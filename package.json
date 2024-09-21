@@ -1,5 +1,5 @@
 {
-  "name": "safe-route",
+  "name": "route-wrapper",
   "version": "1.0.0",
   "scripts": {
     "dev": "npmize dev",
