@@ -1,19 +1,19 @@
 export type RouteOptions<TParams extends any[], TReturn = unknown> = {
-  errorHandler?: ErrorHandler<TParams>
+  middlewares?: RouteHandler<TParams>[]
+  catcher?: CatchHandler<TParams>
   finisher?: FinisherHandler<TParams, TReturn>
-  middlewares?: RouteHandler<TParams, TReturn>[]
 }
 
-export type RouteHandler<TParams extends any[], TReturn = unknown> = (
+export type RouteHandler<TParams extends any[]> = (
   ...args: TParams
-) => TReturn | Promise<TReturn> | void | Promise<void>
+) => void | Promise<void>
 
-export type FinisherHandler<TParams extends any[], TReturn = unknown> = (
-  data: TReturn | void,
+export type CatchHandler<TParams extends any[]> = (
+  err: Error,
   ...args: TParams
 ) => unknown
 
-export type ErrorHandler<TParams extends any[]> = (
-  err: any,
+export type FinisherHandler<TParams extends any[], TReturn = unknown> = (
+  data: Exclude<TReturn | void, Error>,
   ...args: TParams
 ) => unknown

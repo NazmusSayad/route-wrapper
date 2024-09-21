@@ -1,16 +1,17 @@
 import {
   RouteOptions,
   RouteHandler,
-  ErrorHandler,
+  CatchHandler,
   FinisherHandler,
 } from './types.t'
 
-export default function Core<TParams extends any[], TReturn>(
+export default function RouteCore<TParams extends any[], TReturn>(
   options: RouteOptions<TParams, TReturn>
 ) {
-  function ExecuteRoute(...handlers: RouteHandler<TParams, TReturn>[]) {
+  const ExecuteRoute: ExecuteRoute<TParams, TReturn> = function (...handlers) {
     const totalHandlers = [...(options.middlewares ?? []), ...handlers]
-    return async function (...args: TParams) {
+
+    return async function (...args) {
       try {
         for (const handler of totalHandlers) {
           let response = handler(...args)
@@ -22,8 +23,8 @@ export default function Core<TParams extends any[], TReturn>(
         while (exception instanceof Promise) exception = await exception
 
         if (exception instanceof Error) {
-          if (!options.errorHandler) throw exception
-          return options.errorHandler(exception, ...args)
+          if (!options.catcher) throw exception
+          return options.catcher(exception, ...args)
         }
 
         if (!options.finisher) return exception
@@ -32,29 +33,34 @@ export default function Core<TParams extends any[], TReturn>(
     }
   }
 
-  ExecuteRoute.create = function <
-    TInnerParams extends any[] = TParams,
-    TInnerReturn = TReturn
-  >(
-    catcher?: ErrorHandler<TInnerParams>,
-    finisher?: FinisherHandler<TInnerParams, TInnerReturn>
-  ) {
-    return Core<TInnerParams, TInnerReturn>({
+  ExecuteRoute.create = function (catcher, finisher) {
+    return RouteCore({
       ...options,
       finisher: finisher ?? (options.finisher as any),
       middlewares: [...((options.middlewares ?? []) as any[])],
-      errorHandler: catcher ?? (options.errorHandler as any),
+      catcher: catcher ?? (options.catcher as any),
     })
   }
 
-  ExecuteRoute.use = function <
-    THandlers extends RouteHandler<TParams, TReturn>[]
-  >(...handlers: THandlers) {
-    return Core({
+  ExecuteRoute.use = function (...handlers) {
+    return RouteCore({
       ...options,
       middlewares: [...(options.middlewares ?? []), ...handlers],
     })
   }
 
   return ExecuteRoute
+}
+
+export type ExecuteRoute<TParams extends any[], TReturn> = {
+  (...handlers: RouteHandler<TParams>[]): (...args: TParams) => Promise<any>
+
+  create<TInnerParams extends any[] = TParams, TInnerReturn = TReturn>(
+    catcher?: CatchHandler<TInnerParams>,
+    finisher?: FinisherHandler<TInnerParams, TInnerReturn>
+  ): ExecuteRoute<TInnerParams, TInnerReturn>
+
+  use<THandlers extends RouteHandler<TParams>[]>(
+    ...handlers: THandlers
+  ): ExecuteRoute<TParams, TReturn>
 }

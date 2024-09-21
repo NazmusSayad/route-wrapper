@@ -1,6 +1,6 @@
 import RouteWrapper from '..'
 
-const route = RouteWrapper<[]>(
+const route = RouteWrapper<[], Error>(
   (exception) => {
     console.clear()
     console.log({ exception })
@@ -9,18 +9,23 @@ const route = RouteWrapper<[]>(
   (data) => {
     console.log({ data })
   }
+).use(
+  () => {
+    console.log('Middleware 1')
+  },
+  async () => {
+    console.log('Middleware 2')
+  }
 )
 
 const router = route(
   () => {
     // throw 'Middleware 2'
-    console.log('Middleware 1')
+    console.log('handler 1')
   },
   async () => {
-    throw Promise.resolve('Middleware 2')
-
     // throw new Error('Middleware 2')
-    // throw 'Middleware final'
+    throw Promise.resolve('Middleware 2')
   }
 )
 

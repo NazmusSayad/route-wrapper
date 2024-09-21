@@ -30,7 +30,6 @@ const finalHandler = childRouter(
     console.log(args)
 
     throw new Error('Super error')
-    return "HELLO IT's working!"
   }
 )
 
