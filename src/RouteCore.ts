@@ -20,11 +20,14 @@ export default function RouteCore<TParams extends any[], TReturn>(
 
         console.warn('No response from handlers')
       } catch (exception: any) {
-        while (exception instanceof Promise) exception = await exception
-
-        if (exception instanceof Error) {
-          if (!options.catcher) throw exception
-          return options.catcher(exception, ...args)
+        try {
+          while (exception instanceof Promise) exception = await exception
+          throw exception
+        } catch (resolvedException) {
+          if (resolvedException instanceof Error) {
+            if (!options.catcher) throw resolvedException
+            return options.catcher(resolvedException, ...args)
+          }
         }
 
         if (!options.finisher) return exception
